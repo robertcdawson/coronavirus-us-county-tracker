@@ -6,7 +6,7 @@ const mapContainerStyle = {
   width: '800px',
 };
 
-// Set default map coordinates
+// Set default coordinates
 const center = {
   lat: 38.685,
   lng: -115.234,
