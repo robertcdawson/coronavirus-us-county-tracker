@@ -6,11 +6,13 @@ const mapContainerStyle = {
   width: '800px',
 };
 
+// Set default map coordinates
 const center = {
   lat: 38.685,
   lng: -115.234,
 };
 
+// Set default zoom level
 const zoom = 2.5;
 
 class Map extends Component {
