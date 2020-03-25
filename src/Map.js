@@ -17,8 +17,6 @@ const center = {
   lng: -101,
 };
 
-const infoWindowPosition = { lat: 33.772, lng: -117.214 };
-
 const infoWindowDivStyle = {
   background: `white`,
   border: `1px solid #ccc`,
@@ -38,6 +36,8 @@ class Map extends Component {
     this.state = {
       center: center,
       zoom: zoom,
+      infoWindowPosition: { lat: 33.772, lng: -117.214 },
+      isInfoWindowVisible: false,
     };
 
     this.autocomplete = null;
@@ -53,13 +53,20 @@ class Map extends Component {
 
   onPlaceChanged() {
     if (this.autocomplete !== null) {
+      console.log(this.autocomplete.getPlace().geometry.location.lat());
+      console.log(this.autocomplete.getPlace().geometry.location.lng());
       console.log(this.autocomplete.getPlace());
       this.setState({
         center: {
           lat: this.autocomplete.getPlace().geometry.location.lat(),
           lng: this.autocomplete.getPlace().geometry.location.lng(),
         },
-        zoom: 5,
+        infoWindowPosition: {
+          lat: this.autocomplete.getPlace().geometry.location.lat(),
+          lng: this.autocomplete.getPlace().geometry.location.lng(),
+        },
+        zoom: 8,
+        isInfoWindowVisible: true,
       });
     } else {
       console.log('Autocomplete is not loaded yet!');
@@ -67,6 +74,24 @@ class Map extends Component {
   }
 
   render() {
+    const isInfoWindowVisible = this.state.isInfoWindowVisible;
+    let infoWindowComponent;
+
+    if (isInfoWindowVisible) {
+      infoWindowComponent = (
+        <InfoWindow
+          onLoad={infoWindowOnLoad}
+          position={this.state.infoWindowPosition}
+        >
+          <div style={infoWindowDivStyle}>
+            <h1>InfoWindow</h1>
+          </div>
+        </InfoWindow>
+      );
+    } else {
+      infoWindowComponent = null;
+    }
+
     return (
       <LoadScript
         id="script-loader"
@@ -103,11 +128,7 @@ class Map extends Component {
               }}
             />
           </Autocomplete>
-          <InfoWindow onLoad={infoWindowOnLoad} position={infoWindowPosition}>
-            <div style={infoWindowDivStyle}>
-              <h1>InfoWindow</h1>
-            </div>
-          </InfoWindow>
+          {infoWindowComponent}
         </GoogleMap>
       </LoadScript>
     );

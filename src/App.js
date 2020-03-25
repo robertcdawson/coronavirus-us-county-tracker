@@ -45,7 +45,7 @@ class App extends React.Component {
       return (
         <div>
           <h1>Search Coronavirus Cases</h1>
-          <Map />
+          <Map locations={locations} />
           <ul>
             {locations.map(location => (
               <li key={location.id}>
