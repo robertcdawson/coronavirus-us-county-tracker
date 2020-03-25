@@ -58,7 +58,6 @@ class Map extends Component {
   }
 
   onLoad(autocomplete) {
-    console.log('autocomplete: ', autocomplete);
     this.autocomplete = autocomplete;
   }
 
@@ -67,18 +66,12 @@ class Map extends Component {
       countyName = this.autocomplete
         .getPlace()
         .address_components.filter(component => {
-          return (
-            component.types[0] === 'administrative_area_level_2'
-            // component.long_name.includes('Westchester') === true
-          );
+          return component.types[0] === 'administrative_area_level_2';
         })[0].long_name;
       stateName = this.autocomplete
         .getPlace()
         .address_components.filter(component => {
-          return (
-            component.types[0] === 'administrative_area_level_1'
-            // component.long_name.includes('New York') === true
-          );
+          return component.types[0] === 'administrative_area_level_1';
         })[0].long_name;
       foundLocation = this.props.locations.filter(location => {
         return (
@@ -136,8 +129,6 @@ class Map extends Component {
                   .toFixed(2)
                   .toLocaleString('en')}
                 %
-                {/* <br />
-                recovered: {location.latest.recovered.toLocaleString('en')} */}
               </div>
             ))}
           </div>

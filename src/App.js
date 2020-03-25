@@ -45,9 +45,22 @@ class App extends React.Component {
       return (
         <div>
           <h1>Search Coronavirus Cases</h1>
+          <header>
+            <p>
+              Instructions: Enter a location in the search field below to see
+              county-level data related to{' '}
+              <a
+                href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019"
+                target="_blank"
+              >
+                coronavirus disease (COVID-19)
+              </a>
+              .
+            </p>
+          </header>
           <Map locations={locations} />
-          <h2>All Stats</h2>
-          <ul>
+          {/* <h2>All Stats</h2> */}
+          {/* <ul>
             {locations.map(location => (
               <li key={location.id}>
                 <strong>
@@ -63,21 +76,26 @@ class App extends React.Component {
                   .toFixed(2)
                   .toLocaleString('en')}
                 %
-                {/* <br />
-                recovered: {location.latest.recovered.toLocaleString('en')} */}
                 <br />
                 <br />
               </li>
             ))}
-          </ul>
-          <p>Sources</p>
-          <ul>
-            <li>
-              <a href="https://github.com/ExpDev07/coronavirus-tracker-api">
-                Coronavirus Tracker API
-              </a>
-            </li>
-          </ul>
+          </ul> */}
+          <footer>
+            <p>
+              <strong>Sources</strong>
+            </p>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/ExpDev07/coronavirus-tracker-api"
+                  target="_blank"
+                >
+                  Coronavirus Tracker API
+                </a>
+              </li>
+            </ul>
+          </footer>
         </div>
       );
     }
