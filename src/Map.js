@@ -30,6 +30,12 @@ const infoWindowOnLoad = infoWindow => {
 // Set default zoom level
 const zoom = 4;
 
+// Initialize county name
+let countyName;
+
+// Initialize state name
+let stateName;
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -53,8 +59,27 @@ class Map extends Component {
 
   onPlaceChanged() {
     if (this.autocomplete !== null) {
+      countyName = this.autocomplete
+        .getPlace()
+        .address_components.filter(component => {
+          return (
+            component.types[0] === 'administrative_area_level_2' &&
+            component.long_name.includes('Westchester') === true
+          );
+        })[0].long_name;
+      stateName = this.autocomplete
+        .getPlace()
+        .address_components.filter(component => {
+          return (
+            component.types[0] === 'administrative_area_level_1' &&
+            component.long_name.includes('New York') === true
+          );
+        })[0].long_name;
+      console.log('county: ', countyName);
+      console.log('state: ', stateName);
       console.log(this.autocomplete.getPlace().geometry.location.lat());
       console.log(this.autocomplete.getPlace().geometry.location.lng());
+      console.log(this.props.locations);
       console.log(this.autocomplete.getPlace());
       this.setState({
         center: {
