@@ -46,6 +46,7 @@ class App extends React.Component {
         <div>
           <h1>Search Coronavirus Cases</h1>
           <Map locations={locations} />
+          <h2>All Stats</h2>
           <ul>
             {locations.map(location => (
               <li key={location.id}>
@@ -68,6 +69,14 @@ class App extends React.Component {
                 <br />
               </li>
             ))}
+          </ul>
+          <p>Sources</p>
+          <ul>
+            <li>
+              <a href="https://github.com/ExpDev07/coronavirus-tracker-api">
+                Coronavirus Tracker API
+              </a>
+            </li>
           </ul>
         </div>
       );

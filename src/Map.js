@@ -150,7 +150,7 @@ class Map extends Component {
     return (
       <LoadScript
         id="script-loader"
-        googleMapsApiKey="AIzaSyAH-q6sCWB5FSS2iDGbXXdm6EhpnyF_118"
+        googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         libraries={['places']}
       >
         <GoogleMap
