@@ -14,9 +14,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
-    )
+    // fetch(
+    //   'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
+    // )
+    fetch('api/locations.json')
       .then(res => res.json())
       .then(
         result => {
@@ -43,19 +44,26 @@ class App extends React.Component {
     } else {
       return (
         <div>
+          <h1>Search Coronavirus Cases</h1>
           <Map />
           <ul>
             {locations.map(location => (
               <li key={location.id}>
                 <strong>
-                  {location.state} - {location.county}
+                  {location.province} - {location.county}
                 </strong>
                 <br />
                 confirmed: {location.latest.confirmed.toLocaleString('en')}
                 <br />
                 deaths: {location.latest.deaths.toLocaleString('en')}
                 <br />
-                recovered: {location.latest.recovered.toLocaleString('en')}
+                death rate:{' '}
+                {((location.latest.deaths / location.latest.confirmed) * 100)
+                  .toFixed(2)
+                  .toLocaleString('en')}
+                %
+                {/* <br />
+                recovered: {location.latest.recovered.toLocaleString('en')} */}
                 <br />
                 <br />
               </li>

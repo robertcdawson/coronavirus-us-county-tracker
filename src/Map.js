@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Autocomplete,
+  InfoWindow,
+} from '@react-google-maps/api';
 
 const mapContainerStyle = {
-  height: '400px',
-  width: '800px',
+  height: '100vh',
+  width: '100vw',
 };
 
 // Set default coordinates
 const center = {
-  lat: 38.685,
-  lng: -115.234,
+  lat: 35,
+  lng: -101,
+};
+
+const infoWindowPosition = { lat: 33.772, lng: -117.214 };
+
+const infoWindowDivStyle = {
+  background: `white`,
+  border: `1px solid #ccc`,
+  padding: 15,
+};
+
+const infoWindowOnLoad = infoWindow => {
+  console.log('infoWindow: ', infoWindow);
 };
 
 // Set default zoom level
-const zoom = 2.5;
+const zoom = 4;
 
 class Map extends Component {
   constructor(props) {
@@ -68,24 +85,29 @@ class Map extends Component {
           >
             <input
               type="text"
-              placeholder="Place"
+              placeholder="Search"
               style={{
                 boxSizing: `border-box`,
                 border: `1px solid transparent`,
                 width: `240px`,
                 height: `32px`,
-                padding: `0 12px`,
+                padding: `0 8px`,
                 borderRadius: `3px`,
                 boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                fontSize: `14px`,
+                fontSize: `20px`,
                 outline: `none`,
                 textOverflow: `ellipses`,
                 position: 'absolute',
                 left: '50%',
-                marginLeft: '-120px',
+                margin: '1rem 0 0 -120px',
               }}
             />
           </Autocomplete>
+          <InfoWindow onLoad={infoWindowOnLoad} position={infoWindowPosition}>
+            <div style={infoWindowDivStyle}>
+              <h1>InfoWindow</h1>
+            </div>
+          </InfoWindow>
         </GoogleMap>
       </LoadScript>
     );
