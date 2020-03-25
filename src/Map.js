@@ -19,8 +19,9 @@ const center = {
 
 const infoWindowDivStyle = {
   background: `white`,
-  border: `1px solid #ccc`,
+  border: `1px solid #ddd`,
   padding: 15,
+  fontSize: '16px',
 };
 
 const infoWindowOnLoad = infoWindow => {
@@ -36,6 +37,9 @@ let countyName;
 // Initialize state name
 let stateName;
 
+// Initialize found location data
+let foundLocation;
+
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +48,7 @@ class Map extends Component {
       zoom: zoom,
       infoWindowPosition: { lat: 33.772, lng: -117.214 },
       isInfoWindowVisible: false,
+      foundLocation: '',
     };
 
     this.autocomplete = null;
@@ -63,23 +68,27 @@ class Map extends Component {
         .getPlace()
         .address_components.filter(component => {
           return (
-            component.types[0] === 'administrative_area_level_2' &&
-            component.long_name.includes('Westchester') === true
+            component.types[0] === 'administrative_area_level_2'
+            // component.long_name.includes('Westchester') === true
           );
         })[0].long_name;
       stateName = this.autocomplete
         .getPlace()
         .address_components.filter(component => {
           return (
-            component.types[0] === 'administrative_area_level_1' &&
-            component.long_name.includes('New York') === true
+            component.types[0] === 'administrative_area_level_1'
+            // component.long_name.includes('New York') === true
           );
         })[0].long_name;
+      foundLocation = this.props.locations.filter(location => {
+        return (
+          countyName.includes(location.county) === true &&
+          stateName.includes(location.province) === true
+        );
+      });
       console.log('county: ', countyName);
       console.log('state: ', stateName);
-      console.log(this.autocomplete.getPlace().geometry.location.lat());
-      console.log(this.autocomplete.getPlace().geometry.location.lng());
-      console.log(this.props.locations);
+      console.log('this.props.locations', this.props.locations);
       console.log(this.autocomplete.getPlace());
       this.setState({
         center: {
@@ -92,7 +101,9 @@ class Map extends Component {
         },
         zoom: 8,
         isInfoWindowVisible: true,
+        foundLocation: foundLocation,
       });
+      console.log('found location: ', this.state.foundLocation);
     } else {
       console.log('Autocomplete is not loaded yet!');
     }
@@ -109,7 +120,26 @@ class Map extends Component {
           position={this.state.infoWindowPosition}
         >
           <div style={infoWindowDivStyle}>
-            <h1>InfoWindow</h1>
+            {this.state.foundLocation.map(location => (
+              <div key={location.id}>
+                <strong>
+                  {location.province} - {location.county}
+                </strong>
+                <br />
+                <br />
+                confirmed: {location.latest.confirmed.toLocaleString('en')}
+                <br />
+                deaths: {location.latest.deaths.toLocaleString('en')}
+                <br />
+                death rate:{' '}
+                {((location.latest.deaths / location.latest.confirmed) * 100)
+                  .toFixed(2)
+                  .toLocaleString('en')}
+                %
+                {/* <br />
+                recovered: {location.latest.recovered.toLocaleString('en')} */}
+              </div>
+            ))}
           </div>
         </InfoWindow>
       );
