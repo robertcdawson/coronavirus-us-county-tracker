@@ -170,6 +170,7 @@ class Map extends Component {
                 textOverflow: `ellipses`,
                 position: 'absolute',
                 left: '50%',
+                top: '3rem',
                 margin: '1rem 0 0 -120px',
               }}
             />
