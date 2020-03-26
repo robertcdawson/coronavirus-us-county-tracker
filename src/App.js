@@ -13,26 +13,43 @@ class App extends React.Component {
     };
   }
 
+  getApiData() {
+    // ref: https://medium.com/@qjli/daily-coding-tips-6-how-to-use-localstorage-to-cache-all-api-calls-aa884c38c588
+    const apiUrl = 'api/locations.json';
+    // Use API URL as key in localStorage
+    const cache = localStorage.getItem(apiUrl);
+    if (cache) {
+      this.setState({
+        isLoaded: true,
+        locations: JSON.parse(cache),
+      });
+    } else {
+      // fetch(
+      //   'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
+      // )
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(
+          result => {
+            // Set JSON result in localStorage
+            localStorage.setItem(apiUrl, JSON.stringify(result.locations));
+            this.setState({
+              isLoaded: true,
+              locations: result.locations,
+            });
+          },
+          error => {
+            this.setState({
+              isLoaded: true,
+              error,
+            });
+          },
+        );
+    }
+  }
+
   componentDidMount() {
-    // fetch(
-    //   'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
-    // )
-    fetch('api/locations.json')
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            locations: result.locations,
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        },
-      );
+    this.getApiData();
   }
 
   render() {
@@ -52,6 +69,7 @@ class App extends React.Component {
               <a
                 href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 coronavirus disease (COVID-19)
               </a>
@@ -90,6 +108,7 @@ class App extends React.Component {
                 <a
                   href="https://github.com/ExpDev07/coronavirus-tracker-api"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Coronavirus Tracker API
                 </a>
