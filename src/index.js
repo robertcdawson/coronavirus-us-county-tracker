@@ -5,11 +5,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const pageTitle = 'Coronavirus US County Tracker';
+
 ReactDOM.render(
   <div className="App">
     <Helmet>
       <meta charSet="utf-8" />
-      <title>Coronavirus US County Tracker</title>
+      <title>{pageTitle}</title>
       <link
         rel="canonical"
         href="https://coronavirus-us-county-tracker.netlify.com/"
@@ -20,7 +22,7 @@ ReactDOM.render(
       />
     </Helmet>
     <React.StrictMode>
-      <App />
+      <App pageTitle={pageTitle} />
     </React.StrictMode>
   </div>,
   document.getElementById('root'),

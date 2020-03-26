@@ -1,6 +1,17 @@
 import React from 'react';
 import Map from './Map';
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  RedditIcon,
+  RedditShareButton,
+  EmailIcon,
+  EmailShareButton,
+} from 'react-share';
 import './App.css';
+import Helmet from 'react-helmet';
 
 class App extends React.Component {
   constructor(props) {
@@ -99,6 +110,44 @@ class App extends React.Component {
                 "Manhattan" or another borough.
               </em>
             </p>
+            <div className="socialIcons">
+              <ul>
+                <li>Share:</li>
+                <li>
+                  <FacebookShareButton
+                    url={window.location.href}
+                    title={this.props.pageTitle}
+                  >
+                    <FacebookIcon size={32} round={true} />
+                  </FacebookShareButton>
+                </li>
+                <li>
+                  <TwitterShareButton
+                    url={window.location.href}
+                    title={this.props.pageTitle}
+                  >
+                    <TwitterIcon size={32} round={true} />
+                  </TwitterShareButton>
+                </li>
+                <li>
+                  <RedditShareButton
+                    url={window.location.href}
+                    title={this.props.pageTitle}
+                  >
+                    <RedditIcon size={32} round={true} />
+                  </RedditShareButton>
+                </li>
+                <li>
+                  <EmailShareButton
+                    url={window.location.href}
+                    body={this.props.pageTitle}
+                    separator=": "
+                  >
+                    <EmailIcon size={32} round={true} />
+                  </EmailShareButton>
+                </li>
+              </ul>
+            </div>
           </header>
           <Map locations={locations} />
           {/* <h2>All Stats</h2> */}
