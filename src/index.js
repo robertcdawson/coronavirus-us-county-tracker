@@ -1,14 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Helmet } from 'react-helmet';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <div className="App">
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>Coronavirus US County Tracker</title>
+      <link
+        rel="canonical"
+        href="https://coronavirus-us-county-tracker.netlify.com/"
+      />
+      <meta
+        name="description"
+        content="Search coronavirus disease (COVID-19) data by US county"
+      />
+    </Helmet>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </div>,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

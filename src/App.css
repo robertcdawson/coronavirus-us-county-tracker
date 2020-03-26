@@ -13,6 +13,7 @@ header {
 }
 
 footer {
+  text-align: left;
   border: solid 1px #ddd;
   margin: 2rem;
   padding: 2rem;

@@ -40,9 +40,6 @@ class App extends React.Component {
         locations: JSON.parse(cachedApiUrl),
       });
     } else {
-      // fetch(
-      //   'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
-      // )
       fetch(this.apiUrl)
         .then(res => res.json())
         .then(
@@ -80,7 +77,7 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <h1>Search Coronavirus Cases</h1>
+          <h1>Coronavirus US County Tracker</h1>
           <header>
             <p>
               Instructions: Enter a location in the search field below to see
