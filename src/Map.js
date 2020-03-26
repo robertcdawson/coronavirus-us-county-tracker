@@ -144,9 +144,11 @@ class Map extends Component {
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         libraries={['places']}
       >
+        {/* Ref: https://developers.google.com/maps/documentation/javascript/reference#Map */}
         <GoogleMap
           id="searchbox-example"
           mapContainerStyle={mapContainerStyle}
+          options={{ mapTypeControl: false, fullscreenControl: false }}
           zoom={this.state.zoom}
           center={this.state.center}
         >
