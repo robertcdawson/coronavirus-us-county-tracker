@@ -182,22 +182,7 @@ class Map extends Component {
                 onClick={event => {
                   event.target.value = '';
                 }}
-                style={{
-                  boxSizing: `border-box`,
-                  border: `1px solid transparent`,
-                  width: `240px`,
-                  height: `32px`,
-                  padding: `0 8px`,
-                  borderRadius: `3px`,
-                  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                  fontSize: `20px`,
-                  outline: `none`,
-                  textOverflow: `ellipses`,
-                  position: 'absolute',
-                  left: '50%',
-                  top: '3rem',
-                  margin: '1rem 0 0 -120px',
-                }}
+                className="searchField"
               />
             </StandaloneSearchBox>
           </Autocomplete>

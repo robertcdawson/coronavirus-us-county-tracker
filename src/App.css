@@ -1,3 +1,5 @@
+/* Global styles */
+
 .App,
 h1 {
   text-align: center;
@@ -23,6 +25,8 @@ a[target='_blank']:after {
   opacity: 0.5;
 }
 
+/* Social icon styles */
+
 .socialIcons {
   width: 50vw;
   margin: 0 auto;
@@ -38,4 +42,30 @@ a[target='_blank']:after {
 
 .socialIcons li {
   padding: 0 0.5rem;
+}
+
+/* Map styles */
+
+.searchField {
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  width: 80%;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  outline: none;
+  text-overflow: ellipsis;
+  position: absolute;
+  left: 10%;
+  top: 3rem;
+  margin: 1rem 0 0 0;
+}
+
+@media (min-width: 768px) {
+  .searchField {
+    width: 50%;
+    left: 25%;
+  }
 }
