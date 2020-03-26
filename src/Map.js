@@ -125,6 +125,9 @@ class Map extends Component {
         <InfoWindow
           onLoad={infoWindowOnLoad}
           position={this.state.infoWindowPosition}
+          onCloseClick={() => {
+            this.setState({ isInfoWindowVisible: false });
+          }}
         >
           <div style={infoWindowDivStyle}>
             {this.state.foundLocation.map(location => (
