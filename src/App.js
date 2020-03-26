@@ -80,8 +80,9 @@ class App extends React.Component {
           <h1>Coronavirus US County Tracker</h1>
           <header>
             <p>
-              Instructions: Enter a location in the search field below to see
-              county-level data related to{' '}
+              Instructions: Enter a location in the search field below and
+              select an option from the drop-down list to see county-level data
+              related to{' '}
               <a
                 href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019"
                 target="_blank"
@@ -90,6 +91,13 @@ class App extends React.Component {
                 coronavirus disease (COVID-19)
               </a>
               .
+            </p>
+            <p>
+              <em>
+                Note: There is currently an issue displaying data from New York
+                when searching "New York, NY." To view relevant data, search
+                "Manhattan" or another borough.
+              </em>
             </p>
           </header>
           <Map locations={locations} />

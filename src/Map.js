@@ -22,6 +22,7 @@ const infoWindowDivStyle = {
   border: `1px solid #ddd`,
   padding: 15,
   fontSize: '16px',
+  textAlign: 'left',
 };
 
 const infoWindowOnLoad = infoWindow => {
@@ -56,6 +57,19 @@ class Map extends Component {
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
+
+  // setCurrentPosition() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       this.setState({
+  //         center: {
+  //           lat: position.coords.latitude,
+  //           lng: position.coords.longitude,
+  //         },
+  //       });
+  //     });
+  //   }
+  // }
 
   onLoad(autocomplete) {
     this.autocomplete = autocomplete;
@@ -116,7 +130,7 @@ class Map extends Component {
             {this.state.foundLocation.map(location => (
               <div key={location.id}>
                 <strong>
-                  {location.province} - {location.county}
+                  {location.county}, {location.province}
                 </strong>
                 <br />
                 <br />
