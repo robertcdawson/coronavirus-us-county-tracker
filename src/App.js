@@ -11,28 +11,46 @@ class App extends React.Component {
       isLoaded: false,
       locations: [],
     };
+
+    // this.apiUrl = 'api/locations.json';
+    this.apiUrl =
+      'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs';
+  }
+
+  isApiCached() {
+    // Ref: https://gist.github.com/shaik2many/039a8efe13dcafb4a3ffc4e5fb1dad97
+    const hours = 24;
+    const cacheSaveTime = localStorage.getItem('cacheSaveTime');
+    // If designated cache time has expired, remove apiUrl from localStorage
+    if (
+      cacheSaveTime &&
+      new Date().getTime() - cacheSaveTime > hours * 60 * 60 * 1000
+    ) {
+      localStorage.removeItem(this.apiUrl);
+    }
   }
 
   getApiData() {
-    // ref: https://medium.com/@qjli/daily-coding-tips-6-how-to-use-localstorage-to-cache-all-api-calls-aa884c38c588
-    const apiUrl = 'api/locations.json';
+    // Ref: https://medium.com/@qjli/daily-coding-tips-6-how-to-use-localstorage-to-cache-all-api-calls-aa884c38c588
     // Use API URL as key in localStorage
-    const cache = localStorage.getItem(apiUrl);
-    if (cache) {
+    const cachedApiUrl = localStorage.getItem(this.apiUrl);
+    if (cachedApiUrl) {
       this.setState({
         isLoaded: true,
-        locations: JSON.parse(cache),
+        locations: JSON.parse(cachedApiUrl),
       });
     } else {
       // fetch(
       //   'https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=US&source=csbs',
       // )
-      fetch(apiUrl)
+      fetch(this.apiUrl)
         .then(res => res.json())
         .then(
           result => {
-            // Set JSON result in localStorage
-            localStorage.setItem(apiUrl, JSON.stringify(result.locations));
+            // Cache JSON result in localStorage
+            localStorage.setItem(this.apiUrl, JSON.stringify(result.locations));
+            // Store time JSON result is cached in localStorage
+            localStorage.setItem('cacheSaveTime', new Date().getTime());
             this.setState({
               isLoaded: true,
               locations: result.locations,
@@ -49,6 +67,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.isApiCached();
     this.getApiData();
   }
 
