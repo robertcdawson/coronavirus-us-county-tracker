@@ -5,10 +5,27 @@ h1 {
   text-align: center;
 }
 
+.siteTitle {
+  padding: 1rem 0;
+  margin: 0;
+  font-size: 26px;
+}
+
 header {
   width: 90vw;
-  margin: 1rem auto;
-  padding: 1rem;
+  margin: 1rem auto 0 auto;
+  padding: 0 1rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .siteTitle {
+    font-size: 32px;
+  }
+
+  header {
+    width: 50vw;
+  }
 }
 
 footer {
@@ -28,7 +45,7 @@ a[target='_blank']:after {
 /* Social icon styles */
 
 .socialIcons {
-  width: 50vw;
+  width: 20vw;
   margin: 0 auto;
   padding: 0.5rem 0 0 0;
 }
@@ -42,6 +59,10 @@ a[target='_blank']:after {
 
 .socialIcons li {
   padding: 0 0.5rem;
+}
+
+.note {
+  color: #999;
 }
 
 /* Map styles */
@@ -68,4 +89,27 @@ a[target='_blank']:after {
     width: 50%;
     left: 25%;
   }
+}
+
+.infoWindow {
+  background: white;
+  border: none;
+  padding: 15px 15px 5px 0px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.infoWindow .lastUpdated {
+  color: #999;
+  margin: 1rem 0 0 0;
+  font-size: 14px;
+}
+
+button[title='Close'] {
+  width: 38px !important;
+  height: 33px !important;
+  border: solid 2px #ddd !important;
+  border-radius: 0 0 0 10px;
+  top: -1px !important;
+  background: #eee !important;
 }

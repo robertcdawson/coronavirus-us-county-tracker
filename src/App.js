@@ -88,7 +88,7 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <h1>Coronavirus US County Tracker</h1>
+          <h1 className="siteTitle">Coronavirus US County Tracker</h1>
           <header>
             <p>
               Instructions: Enter a location in the search field below and
@@ -103,12 +103,10 @@ class App extends React.Component {
               </a>
               .
             </p>
-            <p>
-              <em>
-                Note: There is currently an issue displaying data from New York
-                when searching "New York, NY." To view relevant data, search
-                "Manhattan" or another borough.
-              </em>
+            <p className="note">
+              Note: There is currently an issue displaying data from New York
+              when searching "New York, NY." To view relevant data, search
+              "Manhattan" or another borough.
             </p>
             <div className="socialIcons">
               <ul>

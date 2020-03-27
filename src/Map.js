@@ -18,14 +18,6 @@ const center = {
   lng: -101,
 };
 
-const infoWindowDivStyle = {
-  background: `white`,
-  border: `1px solid #ddd`,
-  padding: 15,
-  fontSize: '16px',
-  textAlign: 'left',
-};
-
 const infoWindowOnLoad = infoWindow => {
   console.log('infoWindow: ', infoWindow);
 };
@@ -121,6 +113,16 @@ class Map extends Component {
     const isInfoWindowVisible = this.state.isInfoWindowVisible;
     let infoWindowComponent;
 
+    function formatDate(givenDate) {
+      const date = new Date(givenDate);
+      // If argument is valid date, return formatted date
+      if (!isNaN(date.getTime())) {
+        return new Intl.DateTimeFormat('en-US').format(date);
+      }
+      // Else, return empty string
+      return '';
+    }
+
     if (isInfoWindowVisible) {
       infoWindowComponent = (
         <InfoWindow
@@ -130,7 +132,7 @@ class Map extends Component {
             this.setState({ isInfoWindowVisible: false });
           }}
         >
-          <div style={infoWindowDivStyle}>
+          <div className="infoWindow">
             {this.state.foundLocation.map(location => (
               <div key={location.id}>
                 <strong>
@@ -138,15 +140,19 @@ class Map extends Component {
                 </strong>
                 <br />
                 <br />
-                confirmed: {location.latest.confirmed.toLocaleString('en')}
+                Confirmed: {location.latest.confirmed.toLocaleString('en')}
                 <br />
-                deaths: {location.latest.deaths.toLocaleString('en')}
+                Deaths: {location.latest.deaths.toLocaleString('en')}
                 <br />
-                death rate:{' '}
+                Death Rate:{' '}
                 {((location.latest.deaths / location.latest.confirmed) * 100)
                   .toFixed(2)
                   .toLocaleString('en')}
                 %
+                <br />
+                <p className="lastUpdated">
+                  <em>Updated: {formatDate(location.last_updated)}</em>
+                </p>
               </div>
             ))}
           </div>
