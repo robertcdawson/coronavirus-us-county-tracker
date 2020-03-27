@@ -91,7 +91,7 @@ class App extends React.Component {
           <h1 className="siteTitle">Coronavirus US County Tracker</h1>
           <header>
             <p>
-              Instructions: Enter a location in the search field below and
+              Instructions: Enter a US county in the search field below and
               select an option from the drop-down list to see county-level data
               related to{' '}
               <a
@@ -104,9 +104,8 @@ class App extends React.Component {
               .
             </p>
             <p className="note">
-              Note: There is currently an issue displaying data from New York
-              when searching "New York, NY." To view relevant data, search
-              "Manhattan" or another borough.
+              Note: To search New York City, enter "Manhattan" or another
+              borough.
             </p>
             <div className="socialIcons">
               <ul>

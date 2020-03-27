@@ -51,19 +51,6 @@ class Map extends Component {
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
   }
 
-  // setCurrentPosition() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(function(position) {
-  //       this.setState({
-  //         center: {
-  //           lat: position.coords.latitude,
-  //           lng: position.coords.longitude,
-  //         },
-  //       });
-  //     });
-  //   }
-  // }
-
   onLoad(autocomplete) {
     this.autocomplete = autocomplete;
   }
