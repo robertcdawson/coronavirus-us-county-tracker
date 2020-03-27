@@ -103,10 +103,6 @@ class App extends React.Component {
               </a>
               .
             </p>
-            <p className="note">
-              Note: To search New York City, enter "Manhattan" or another
-              borough.
-            </p>
             <div className="socialIcons">
               <ul>
                 <li>Share:</li>

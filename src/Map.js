@@ -56,17 +56,24 @@ class Map extends Component {
   }
 
   onPlaceChanged() {
+    const searchTerm = document.querySelector('.searchField').value;
+    console.log('search term', searchTerm);
     if (this.autocomplete !== null) {
-      countyName = this.autocomplete
-        .getPlace()
-        .address_components.filter(component => {
-          return component.types[0] === 'administrative_area_level_2';
-        })[0].long_name;
-      stateName = this.autocomplete
-        .getPlace()
-        .address_components.filter(component => {
-          return component.types[0] === 'administrative_area_level_1';
-        })[0].long_name;
+      if (searchTerm.includes('New York') || searchTerm.includes('NYC')) {
+        countyName = 'New York';
+        stateName = 'New York';
+      } else {
+        countyName = this.autocomplete
+          .getPlace()
+          .address_components.filter(component => {
+            return component.types[0] === 'administrative_area_level_2';
+          })[0].long_name;
+        stateName = this.autocomplete
+          .getPlace()
+          .address_components.filter(component => {
+            return component.types[0] === 'administrative_area_level_1';
+          })[0].long_name;
+      }
       foundLocation = this.props.locations.filter(location => {
         return (
           countyName.includes(location.county) === true &&
@@ -166,6 +173,7 @@ class Map extends Component {
           <Autocomplete
             onLoad={this.onLoad}
             onPlaceChanged={this.onPlaceChanged}
+            restrictions={{ country: 'US' }}
           >
             <StandaloneSearchBox>
               <input
