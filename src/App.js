@@ -103,6 +103,9 @@ class App extends React.Component {
               </a>
               .
             </p>
+            <p className="note">
+              Note: City names and zip codes typically also return data.
+            </p>
             <div className="socialIcons">
               <ul>
                 <li>Share:</li>
@@ -171,6 +174,17 @@ class App extends React.Component {
             </p>
             <ul>
               <li>
+                Data:{' '}
+                <a
+                  href="https://www.csbs.org/information-covid-19-coronavirus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Conference of State Bank Supervisors (CSBS)
+                </a>
+              </li>
+              <li>
+                API:{' '}
                 <a
                   href="https://github.com/ExpDev07/coronavirus-tracker-api"
                   target="_blank"

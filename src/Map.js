@@ -8,8 +8,8 @@ import {
 } from '@react-google-maps/api';
 
 const mapContainerStyle = {
-  height: '100vh',
   width: '100vw',
+  height: '60vh',
 };
 
 // Set default coordinates
@@ -59,7 +59,13 @@ class Map extends Component {
     const searchTerm = document.querySelector('.searchField').value;
     console.log('search term', searchTerm);
     if (this.autocomplete !== null) {
-      if (searchTerm.includes('New York') || searchTerm.includes('NYC')) {
+      if (
+        searchTerm.includes('New York') ||
+        searchTerm.includes('NYC') ||
+        searchTerm.includes('Bronx') ||
+        searchTerm.includes('Brooklyn') ||
+        searchTerm.includes('Queens')
+      ) {
         countyName = 'New York';
         stateName = 'New York';
       } else {
@@ -178,7 +184,7 @@ class Map extends Component {
             <StandaloneSearchBox>
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Search US Counties"
                 // Clear search field on click
                 onClick={event => {
                   event.target.value = '';
