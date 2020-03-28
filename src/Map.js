@@ -172,7 +172,11 @@ class Map extends Component {
         <GoogleMap
           id="searchbox-example"
           mapContainerStyle={mapContainerStyle}
-          options={{ mapTypeControl: false, fullscreenControl: false }}
+          options={{
+            mapTypeControl: false,
+            fullscreenControl: false,
+            streetViewControl: false,
+          }}
           zoom={this.state.zoom}
           center={this.state.center}
         >
