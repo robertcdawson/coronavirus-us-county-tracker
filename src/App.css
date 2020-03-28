@@ -83,7 +83,7 @@ a[target='_blank']:after {
 
 .searchField {
   box-sizing: border-box;
-  border: 1px solid transparent;
+  border: 1px solid #999;
   width: 80%;
   height: 40px;
   padding: 0 8px;
