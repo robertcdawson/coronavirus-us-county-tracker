@@ -94,7 +94,7 @@ a[target='_blank']:after {
   text-overflow: ellipsis;
   position: absolute;
   left: 10%;
-  top: 3rem;
+  top: 0;
   margin: 1rem 0 0 0;
 }
 
